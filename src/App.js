@@ -24,9 +24,13 @@ function App() {
     },
   ];
 
+  const onSetNewDataHandler = (newData) => {
+    console.log(newData);
+  }
+
   return (
     <div>
-      <NewExpense/>
+      <NewExpense onSetNewData={onSetNewDataHandler}/>
       <ExpenseList expenses={expenses}/>
     </div>
   );
