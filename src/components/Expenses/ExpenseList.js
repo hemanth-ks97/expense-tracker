@@ -15,10 +15,8 @@ function ExpenseList(props){
         <div>
             <Card className="expenses">
                 <ExpensesFilter prevYearValue={selectedYear} onFilterChange={onFilterChangehandler}/>
-                <ExpenseItem date={props.expenses[0].date} title={props.expenses[0].title} amount={props.expenses[0].amount}/>
-                <ExpenseItem date={props.expenses[1].date} title={props.expenses[1].title} amount={props.expenses[1].amount}/>
-                <ExpenseItem date={props.expenses[2].date} title={props.expenses[2].title} amount={props.expenses[2].amount}/>
-                <ExpenseItem date={props.expenses[3].date} title={props.expenses[3].title} amount={props.expenses[3].amount}/>
+                {props.expenses.filter(expense => expense.date.getFullYear().toString() === selectedYear).length === 0 && <p>No entries found</p>}
+                {props.expenses.filter(expense => expense.date.getFullYear().toString() === selectedYear).length > 0 && props.expenses.filter(expense => expense.date.getFullYear().toString() === selectedYear).map(expense => <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date}></ExpenseItem>)}
             </Card>
         </div>
     )
